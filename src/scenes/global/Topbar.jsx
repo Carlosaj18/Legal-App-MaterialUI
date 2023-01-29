@@ -8,6 +8,8 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 const Topbar = () => {
   const theme = useTheme();
@@ -100,17 +102,12 @@ const Topbar = () => {
           )}
         </IconButton>
         <Box textAlign="center">
-          <Typography
-            variant="h3"
-            color={colors.grey[100]}
-            fontWeight="bold"
-            sx={{ m: "10px 0 0 0" }}
-          >
-            Welcome
-          </Typography>
-          <Typography variant="h5" color={colors.greenAccent[500]}>
-            Carlos Jaramillo
-          </Typography>
+          <IconButton>
+            <SettingsOutlinedIcon />
+          </IconButton>
+          <IconButton>
+            <PersonOutlinedIcon />
+          </IconButton>
         </Box>
         <Box display="flex" sx={{ position: "relative" }}>
           <img
