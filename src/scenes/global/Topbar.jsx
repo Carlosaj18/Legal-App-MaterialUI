@@ -1,5 +1,5 @@
 import { Box, IconButton, useTheme, Button, Typography } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
@@ -13,9 +13,17 @@ const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const [widthInput, setWidthInput] = useState(true);
+  let textInput = useRef();
 
   const handleInputSearchBar = (e) => {
     console.log(e.target.value);
+  };
+
+  const handlefocusTextInput = () => {
+    // Hace enfoque explícitamente del campo de texto, haciendo uso de un API del DOM
+    // Nota: Estamos accediendo la propiedad "current" para obtener el nodo del DOM
+    setWidthInput(!widthInput);
   };
 
   return (
@@ -28,7 +36,7 @@ const Topbar = () => {
       {/** Box Container left */}
       <Box
         display="flex"
-        justifyContent="space-between"
+        justifyContent="end"
         alignItems="center"
         p={2}
         sx={{ width: "80%" }}
@@ -39,11 +47,13 @@ const Topbar = () => {
           backgroundColor={colors.primary[400]}
           borderRadius="3px"
           m="10px"
-          sx={{ width: "80%" }}
+          sx={{ width: widthInput ? `${80}%` : `${30}%` }}
+          onClick={handlefocusTextInput}
         >
           <InputBase
             sx={{ ml: 2, flex: 1 }}
             placeholder="Search"
+            ref={textInput}
             onChange={handleInputSearchBar}
           />
           <IconButton type="button" sx={{ p: 1 }}>
@@ -67,9 +77,9 @@ const Topbar = () => {
         <IconButton sx={{ width: 50, height: "50px" }}>
           <NotificationsOutlinedIcon
             sx={{
-              fontSize: "1.5em",
+              fontSize: "2em",
               borderRight: `1px solid ${colors.blueAccent[500]}`,
-              pr: "5px",
+              pr: "10px",
             }}
           />
         </IconButton>
